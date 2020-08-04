@@ -6,6 +6,9 @@ import Cart from '@/views/home/Cart'
 import Me from '@/views/home/me'
 import Xq from '@/views/good/xq'
 import Search from '@/views/good/search'
+import Detail from '@/views/good/detail'
+// import Deil from '@/views/good/deil'
+import Login from '@/views/login/login'
 export default [
     {
         path: '/',
@@ -63,6 +66,22 @@ export default [
         component:Search ,
         meta: {
             title: '搜索页'
+        }
+    },
+    {
+        path:'/detail/:id',
+        name: "Detail",
+        component:Detail,
+        meta: {
+            title: '商品详情页'
+        }
+    },
+    {
+        path:'/login',
+        name: "Login",
+        component:Login,
+        meta: {
+            title: '商品登录'
         }
     },
 ]
