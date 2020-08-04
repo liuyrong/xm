@@ -1,13 +1,13 @@
 <template>
   <div class="box">
     <!-- 头部搜索 -->
-    <van-search placeholder="请输入商品名称" />
+    <van-search placeholder="请输入商品名称" @click="toogle"/>
     <!-- 左边导航栏 -->
     <div>
       <van-tree-select :items="categroy" :main-active-index.sync="active" class="tree">
         <template #content>
           <div id="sub_Fen">
-            <div class="tu" v-for="(item,index) in getCate" :key="index">
+            <div class="tu" v-for="(item,index) in getCate" :key="index" @click="gotiao(item.id)">
               <img :src="item.icon" />
               <p>{{item.name}}</p>
             </div>
@@ -63,6 +63,12 @@ export default {
         this.subFen = res.data;
       });
     },
+      gotiao(cid){
+      this.$router.push("/xq/"+cid);
+    },
+    toogle(){
+      this.$router.push("/search")
+    }
   },
 };
 </script>

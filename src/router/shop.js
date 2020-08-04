@@ -4,12 +4,15 @@ import Index from '@/views/home/index'
 import Fen from '@/views/home/Fen'
 import Cart from '@/views/home/Cart'
 import Me from '@/views/home/me'
+import Xq from '@/views/good/xq'
+import Search from '@/views/good/search'
 export default [
     {
         path: '/',
         name: "/",
         component: Home,
         redirect: "/index",
+        // 二级路由
         children: [
             {
                 path: '/index',
@@ -45,5 +48,21 @@ export default [
             },
         ]
     },
-
+    //一级路由
+    {
+        path: '/xq/:cid',
+        name: "Xq",
+        component: Xq,
+        meta: {
+            title: '详情页'
+        }
+    },
+    {
+        path: '/search',
+        name: "Search",
+        component:Search ,
+        meta: {
+            title: '搜索页'
+        }
+    },
 ]

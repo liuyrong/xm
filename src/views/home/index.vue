@@ -27,34 +27,7 @@
       </div>
     </div>
     <!-- 砍价部分 -->
-    <div class="lyr_k">
-      <div class="lyr_p">
-        <p>全民砍价➡</p>
-      </div>
-      <div class="item" v-for="(item,index) in KanList" :key="index">
-        <div class="item-left">
-          <img :src="item.pic" />
-        </div>
-        <div class="item-right">
-          <p v-html="item.name"></p>
-          <p v-html="item.characteristic"></p>
-          <ol>
-            <li>
-              <p>￥{{item.minPrice}}</p>
-              <p>低价</p>
-            </li>
-            <li>
-              <p>￥{{item.originalPrice}}</p>
-              <p>原价</p>
-            </li>
-            <li>
-              <p>{{item.stores}}</p>
-              <p>限量</p>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </div>
+   <Cut :KanList="KanList" />
     <!-- 结束 -->
     <!-- 又一个轮播图、 -->
     <div class="article">
@@ -67,19 +40,23 @@
         </van-swipe-item>
       </van-swipe>
     </div>
-    <!-- 结束 -->
-    <div class="good-item">
-      <div class="g-item" v-for="(item,index) in goodList" :key="index">
-        <img :src="item.pic" alt />
-        <p v-html="item.name"></p>
-        <p v-html="'￥'+item.originalPrice"></p>
+   <!-- 人气推荐 -->
+    <div class="tui">
+      <div class="r-head">
+        <span>人气推荐</span>
+        <van-icon name="arrow" />
+        <Tui :goodList="goodList" />
       </div>
+     
     </div>
+
     <!-- 不能结束 -->
   </div>
 </template>
 
 <script>
+import Cut from '@/components/home/cut.vue'
+import Tui from '@/components/home/tui.vue'
 export default {
   data() {
     return {
@@ -95,6 +72,11 @@ export default {
     this.getKan();
     this.getLun();
     this.getTui();
+   
+  },
+  components:{
+Cut,
+Tui
   },
   methods: {
     // 第一个渲染
@@ -147,6 +129,7 @@ export default {
         console.log(this.goodList);
       });
     },
+  
   },
 };
 </script>
@@ -252,21 +235,19 @@ export default {
   }
   // 又一个轮播结束
   //
-  .good-item {
+ //人气推荐
+  .tui {
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    .g-item {
-      width: 48%;
-      margin: 1%;
-      img {
-        width: 100%;
-        height: 4rem;
-      }
-      p {
-        line-height: 0.45rem;
-      }
+    background: #fff;
+    margin-top: 0.2rem;
+    .r-head {
+      line-height: 0.88rem;
+      text-align: center;
+      font-size: 0.35rem;
+      border-bottom: #dddddd 1px solid;
     }
+
   }
 }
+
 </style>
