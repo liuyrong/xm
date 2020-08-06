@@ -32,12 +32,18 @@
     <!-- 底部区域 -->
     <van-goods-action>
       <van-goods-action-icon icon="chat-o" text="客服" dot />
-      <van-goods-action-icon icon="cart-o" text="购物车" badge="5" />
-      <van-goods-action-icon icon="shop-o" text="店铺" badge="12" />
+      <van-goods-action-icon icon="cart-o" text="购物车"  @click="$router.push('/cart')" :badge="this.$store.getters.totalNums"/>
+      <van-goods-action-icon icon="shop-o" text="店铺"  />
       <van-goods-action-button type="danger" text="立即购买" />
       <van-goods-action-button type="warning" text="加入购物车" @click="skuShow = !skuShow"/>
     </van-goods-action>
     <van-sku v-model="skuShow" :sku="sku" :goods="goods" @add-cart="addCart" />
+    <!-- 返回按钮 -->
+    <div id="hui" @click="$router.go(-1)">
+      <van-icon name="arrow-left" size="30">
+
+      </van-icon>
+    </div>
     <!-- 不能结束 -->
   </div>
 </template>
@@ -134,6 +140,33 @@ export default {
             this.$router.push("/login");
             return false;
       }
+    //具体加入购物车的信息
+      let cartList = this.$store.state.cartList;
+      let index = cartList.findIndex((item) => {
+        return item.id == this.gid;
+      });
+      //购物车中存在当前商品
+      if (index > -1) {
+        cartList.map((item) => {
+          if(item.id ==this.gid){
+          item.nums++;
+          }
+         
+        });
+      } else {//商品不存在的时候
+        //实例化购物车的对象信息
+        let obj = new Object();
+        obj.id = this.gid;
+        obj.name = this.goodsInfo.name;
+        obj.price = this.goodsInfo.originalPrice;
+        obj.img = this.goods.picture;
+        obj.nums = 1;
+        obj.checked = true;
+        cartList.push(obj);
+      }
+         this.$store.commit("addCart", cartList); //添加购物车的对象    
+      this.$toast.success("加入成功")
+      this.skuShow =false;
     }
     
     
@@ -145,7 +178,14 @@ export default {
 .box {
   width: 100%;
   background: #f0f0f0;
-
+#hui{
+  padding: .3rem;
+  position: fixed;
+  top: .5rem;
+  left:.3rem;
+  border-radius: 50%;
+  background-color: yellow;
+}
   #banner {
     width: 100%;
 

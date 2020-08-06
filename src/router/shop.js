@@ -9,6 +9,8 @@ import Search from '@/views/good/search'
 import Detail from '@/views/good/detail'
 // import Deil from '@/views/good/deil'
 import Login from '@/views/login/login'
+import Art from '@/views/artical/art'
+import Wz from '@/views/artical/wz'
 export default [
     {
         path: '/',
@@ -82,6 +84,22 @@ export default [
         component:Login,
         meta: {
             title: '商品登录'
+        }
+    },
+    {
+        path:'/art',
+        name: "Art",
+        component:Art,
+        meta: {
+            title: '详情页'
+        }
+    },
+    {
+        path:'/art/wz/:id',
+        name: "Wz",
+        component:Wz,
+        meta: {
+            title: '跳转详情页'
         }
     },
 ]
