@@ -20,7 +20,7 @@
           <van-icon name="cluster-o" size="30" />
           <p>砍价</p>
         </div>
-        <div class="icon-item">
+        <div class="icon-item" @click="getart">
           <van-icon name="manager-o" size="30" />
           <p>专栏</p>
         </div>
@@ -129,7 +129,9 @@ Tui
         console.log(this.goodList);
       });
     },
-  
+  getart(){
+    this.$router.push("/art")
+  }
   },
 };
 </script>
