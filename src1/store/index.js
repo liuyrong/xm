@@ -1,21 +1,25 @@
 import Vue from "vue";
 import Vuex from 'vuex';
-
+// 导入vuex插件
 import VuexPersistence from 'vuex-persist'
 // 本地存储
 const vuexLocal = new VuexPersistence({
     storage: window.localStorage
 })
-
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
-        m_cartList: [],
+        cartList: [],//购物车信息
     },
     mutations: {
-        addCart(state, data) {
-            state.m_cartList = data
-        }
+        addCart(state, payload){
+            if(payload.length == 0){
+            return false;
+            }
+            // 追加信息
+            state.cartList = payload;
+        },
+
     },
     getters: {
         // 计算购物车商品的总数量

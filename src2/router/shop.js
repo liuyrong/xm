@@ -4,6 +4,8 @@ import Index from '@/views/home/index'
 import Fen from '@/views/home/Fen'
 import Cart from '@/views/home/Cart'
 import Me from '@/views/home/me'
+import Che from '@/views/home/che'
+
 export default [
     {
         path: '/',
@@ -43,7 +45,16 @@ export default [
                     title: '严选商城个人'
                 }
             },
-        ]
+        ],
     },
-
+    // 一级路由
+    {
+        path: '/che',
+        name: " Che",
+        component: Che,
+        meta: {
+            title: '严选商成购物'
+        }
+    },
+    
 ]

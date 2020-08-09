@@ -1,6 +1,6 @@
 <template>
     <div>
-我的
+        加入购物车
     </div>
 </template>
 
